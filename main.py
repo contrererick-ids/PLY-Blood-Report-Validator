@@ -13,6 +13,14 @@ data = """
         "fecha_nacimiento": "15/05/1980",
         "sexo": "M",
         "edad": 43
+    },
+    "medico_solicitante": "Dra. María López",
+    "seccion": "Biometría Hemática",
+    "parametros": [
+     ],
+    "firma": {
+        "responsable": "Dra. María López",
+        "cedula": "12345678"
     }
 }
 """

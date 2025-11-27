@@ -20,8 +20,8 @@ def p_fecha_validacion(p):
     p[0] = (p[1], p[2], p[3], p[4])
 
 def p_paciente(p):
-    'D : PACIENTE COLON LKEY E RKEY'
-    p[0] = (p[1], p[2], p[3], p[5])
+    'D : PACIENTE COLON LKEY E RKEY COMMA I'
+    p[0] = (p[1], p[2], p[3], p[5], p[6])
 
 def p_nombre(p):
     'E : NOMBRE COLON CADENA COMMA F'
@@ -37,6 +37,30 @@ def p_sexo(p):
 
 def p_edad(p):
     'H : EDAD COLON NUM'
+    p[0] = (p[1], p[2], p[3])
+
+def p_medico_solicitante(p):
+    'I : MEDICO_SOLICIANTE COLON CADENA COMMA J'
+    p[0] = (p[1], p[2], p[3], p[4])
+
+def p_seccion(p):
+    'J : SECCION COLON BIOMETRIA_HEMATICA COMMA K'
+    p[0] = (p[1], p[2], p[3], p[4], p[5])
+
+def p_parametros(p):
+    'K : PARAMETROS COLON LTKEY RTKEY COMMA L'
+    p[0] = (p[1], p[2], p[3], p[4])
+
+def p_firma(p):
+    'L : FIRMA COLON LKEY M RKEY'
+    p[0] = (p[1], p[2], p[3], p[5])
+
+def p_responsable(p):
+    'M : RESPONSABLE COLON CADENA COMMA N'
+    p[0] = (p[1], p[2], p[3], p[4])
+
+def p_cedula(p):
+    'N : CEDULA COLON NUM_CEDULA'
     p[0] = (p[1], p[2], p[3])
 
 # 3. Definición de la función para manejar errores de sintaxis

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CADENA CARACTER COLON COMMA EDAD FECHA FECHA_FORMA FECHA_HORA FECHA_NAC FECHA_VALIDACION FOLIO LKEY NOMBRE NUM PACIENTE RKEY SEXOS : LKEY A RKEYA : FOLIO COLON NUM COMMA BB : FECHA_FORMA COLON FECHA_HORA COMMA CC : FECHA_VALIDACION COLON FECHA_HORA COMMA DD : PACIENTE COLON LKEY E RKEYE : NOMBRE COLON CADENA COMMA FF : FECHA_NAC COLON FECHA COMMA GG : SEXO COLON CARACTER COMMA HH : EDAD COLON NUM'
+_lr_signature = 'BIOMETRIA_HEMATICA CADENA CARACTER CEDULA COLON COMMA EDAD FECHA FECHA_FORMA FECHA_HORA FECHA_NAC FECHA_VALIDACION FIRMA FOLIO LKEY LTKEY MEDICO_SOLICIANTE NOMBRE NUM NUM_CEDULA PACIENTE PARAMETROS RESPONSABLE RKEY RTKEY SECCION SEXOS : LKEY A RKEYA : FOLIO COLON NUM COMMA BB : FECHA_FORMA COLON FECHA_HORA COMMA CC : FECHA_VALIDACION COLON FECHA_HORA COMMA DD : PACIENTE COLON LKEY E RKEY COMMA IE : NOMBRE COLON CADENA COMMA FF : FECHA_NAC COLON FECHA COMMA GG : SEXO COLON CARACTER COMMA HH : EDAD COLON NUMI : MEDICO_SOLICIANTE COLON CADENA COMMA JJ : SECCION COLON BIOMETRIA_HEMATICA COMMA KK : PARAMETROS COLON LTKEY RTKEY COMMA LL : FIRMA COLON LKEY M RKEYM : RESPONSABLE COLON CADENA COMMA NN : CEDULA COLON NUM_CEDULA'
     
-_lr_action_items = {'LKEY':([0,21,],[2,22,]),'$end':([1,5,],[0,-1,]),'FOLIO':([2,],[4,]),'RKEY':([3,9,14,19,23,25,29,34,39,42,],[5,-2,-3,-4,25,-5,-6,-7,-8,-9,]),'COLON':([4,10,15,20,24,30,35,40,],[6,11,16,21,26,31,36,41,]),'NUM':([6,41,],[7,42,]),'COMMA':([7,12,17,27,32,37,],[8,13,18,28,33,38,]),'FECHA_FORMA':([8,],[10,]),'FECHA_HORA':([11,16,],[12,17,]),'FECHA_VALIDACION':([13,],[15,]),'PACIENTE':([18,],[20,]),'NOMBRE':([22,],[24,]),'CADENA':([26,],[27,]),'FECHA_NAC':([28,],[30,]),'FECHA':([31,],[32,]),'SEXO':([33,],[35,]),'CARACTER':([36,],[37,]),'EDAD':([38,],[40,]),}
+_lr_action_items = {'LKEY':([0,21,62,],[2,22,63,]),'$end':([1,5,],[0,-1,]),'FOLIO':([2,],[4,]),'RKEY':([3,9,14,19,23,29,33,39,43,49,53,58,60,64,66,70,73,],[5,-2,-3,-4,25,-5,-6,-10,-7,-11,-8,-9,-12,66,-13,-14,-15,]),'COLON':([4,10,15,20,24,30,34,40,44,50,54,61,65,71,],[6,11,16,21,26,32,36,42,46,52,56,62,67,72,]),'NUM':([6,56,],[7,58,]),'COMMA':([7,12,17,25,28,35,38,45,48,57,68,],[8,13,18,27,31,37,41,47,51,59,69,]),'FECHA_FORMA':([8,],[10,]),'FECHA_HORA':([11,16,],[12,17,]),'FECHA_VALIDACION':([13,],[15,]),'PACIENTE':([18,],[20,]),'NOMBRE':([22,],[24,]),'CADENA':([26,32,67,],[28,35,68,]),'MEDICO_SOLICIANTE':([27,],[30,]),'FECHA_NAC':([31,],[34,]),'FECHA':([36,],[38,]),'SECCION':([37,],[40,]),'SEXO':([41,],[44,]),'BIOMETRIA_HEMATICA':([42,],[45,]),'CARACTER':([46,],[48,]),'PARAMETROS':([47,],[50,]),'EDAD':([51,],[54,]),'LTKEY':([52,],[55,]),'RTKEY':([55,],[57,]),'FIRMA':([59,],[61,]),'RESPONSABLE':([63,],[65,]),'CEDULA':([69,],[71,]),'NUM_CEDULA':([72,],[73,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'S':([0,],[1,]),'A':([2,],[3,]),'B':([8,],[9,]),'C':([13,],[14,]),'D':([18,],[19,]),'E':([22,],[23,]),'F':([28,],[29,]),'G':([33,],[34,]),'H':([38,],[39,]),}
+_lr_goto_items = {'S':([0,],[1,]),'A':([2,],[3,]),'B':([8,],[9,]),'C':([13,],[14,]),'D':([18,],[19,]),'E':([22,],[23,]),'I':([27,],[29,]),'F':([31,],[33,]),'J':([37,],[39,]),'G':([41,],[43,]),'K':([47,],[49,]),'H':([51,],[53,]),'L':([59,],[60,]),'M':([63,],[64,]),'N':([69,],[70,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -31,9 +31,15 @@ _lr_productions = [
   ('A -> FOLIO COLON NUM COMMA B','A',5,'p_folio','parser.py',11),
   ('B -> FECHA_FORMA COLON FECHA_HORA COMMA C','B',5,'p_fecha_forma','parser.py',15),
   ('C -> FECHA_VALIDACION COLON FECHA_HORA COMMA D','C',5,'p_fecha_validacion','parser.py',19),
-  ('D -> PACIENTE COLON LKEY E RKEY','D',5,'p_paciente','parser.py',23),
+  ('D -> PACIENTE COLON LKEY E RKEY COMMA I','D',7,'p_paciente','parser.py',23),
   ('E -> NOMBRE COLON CADENA COMMA F','E',5,'p_nombre','parser.py',27),
   ('F -> FECHA_NAC COLON FECHA COMMA G','F',5,'p_fecha_nac','parser.py',31),
   ('G -> SEXO COLON CARACTER COMMA H','G',5,'p_sexo','parser.py',35),
   ('H -> EDAD COLON NUM','H',3,'p_edad','parser.py',39),
+  ('I -> MEDICO_SOLICIANTE COLON CADENA COMMA J','I',5,'p_medico_solicitante','parser.py',43),
+  ('J -> SECCION COLON BIOMETRIA_HEMATICA COMMA K','J',5,'p_seccion','parser.py',47),
+  ('K -> PARAMETROS COLON LTKEY RTKEY COMMA L','K',6,'p_parametros','parser.py',51),
+  ('L -> FIRMA COLON LKEY M RKEY','L',5,'p_firma','parser.py',55),
+  ('M -> RESPONSABLE COLON CADENA COMMA N','M',5,'p_responsable','parser.py',59),
+  ('N -> CEDULA COLON NUM_CEDULA','N',3,'p_cedula','parser.py',63),
 ]

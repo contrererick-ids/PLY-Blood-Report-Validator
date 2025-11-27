@@ -3,7 +3,9 @@ import ply.lex as lex
 
 #2.  Se define una lista de tokens que el analizador léxico reconocerá.
 tokens = ('FOLIO', 'FECHA_FORMA', 'FECHA_VALIDACION', 'PACIENTE', 'NOMBRE', 'FECHA_NAC', 'SEXO', 'EDAD',
-          'NUM', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'COLON', 'COMMA')
+          'MEDICO_SOLICIANTE', 'SECCION', 'BIOMETRIA_HEMATICA', 'PARAMETROS',
+          'FIRMA', 'RESPONSABLE', 'CEDULA', 'NUM_CEDULA',
+          'NUM', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA')
 
 # 3. Se definen las expresiones regulares para cada token a través de una función
 # Palabras reservadas
@@ -47,6 +49,41 @@ def t_EDAD(t):
     print("→ ReconocÍ la PALABRA RESERVADA EDAD")
     return t
 
+def t_MEDICO_SOLICIANTE(t):
+    r'"medico_solicitante"'     # Patrón: palabra reservada MEDICO_SOLICIANTE
+    print("→ ReconocÍ la PALABRA RESERVADA MEDICO_SOLICIANTE")
+    return t
+
+def t_SECCION(t):
+    r'"seccion"'       # Patrón: palabra reservada SECCION
+    print("→ ReconocÍ la PALABRA RESERVADA SECCION")
+    return t
+
+def t_BIOMETRIA_HEMATICA(t):
+    r'"Biometría\sHemática"'     # Patrón: palabra reservada BIOMETRIA_HEMATICA
+    print("→ ReconocÍ la PALABRA RESERVADA BIOMETRIA_HEMATICA")
+    return t
+
+def t_PARAMETROS(t):
+    r'"parametros"'     # Patrón: palabra reservada PARAMETROS
+    print("→ ReconocÍ la PALABRA RESERVADA PARAMETROS")
+    return t
+
+def t_FIRMA(t):
+    r'"firma"'          # Patrón: palabra reservada FIRMA
+    print("→ ReconocÍ la PALABRA RESERVADA FIRMA")
+    return t
+
+def t_RESPONSABLE(t):
+    r'"responsable"'    # Patrón: palabra reservada RESPONSABLE
+    print("→ ReconocÍ la PALABRA RESERVADA RESPONSABLE")
+    return t
+
+def t_CEDULA(t):
+    r'"cedula"'         # Patrón: palabra reservada CEDULA
+    print("→ ReconocÍ la PALABRA RESERVADA CEDULA")
+    return t
+
 # Símbolos reservados
 def t_LKEY(t):
     r'\{'               # Patrón: símbolo { (escapado)
@@ -56,6 +93,16 @@ def t_LKEY(t):
 def t_RKEY(t):
     r'\}'               # Patrón: símbolo } (escapado)
     print("→ Reconocí una LLAVE DER")
+    return t
+
+def t_LTKEY(t):
+    r'\['               # Patrón: símbolo [ (escapado)
+    print("→ ReconocÍ un CORCHETE IZQ")
+    return t
+
+def t_RTKEY(t):
+    r'\]'               # Patrón: símbolo ] (escapado)
+    print("→ ReconocÍ un CORCHETE DER")
     return t
 
 def t_COLON(t):
@@ -69,9 +116,9 @@ def t_COMMA(t):
     return t
 
 # Tipos de datos
-def t_NUM(t):
-    r'\d+'              # Patrón: uno o más dígitos
-    print("→ Reconocí un NÚMERO")
+def t_NUM_CEDULA(t):
+    r'"\d{8}"'            # Patrón: cadena de dígitos entre comillas
+    print("→ ReconocÍ una CÉDULA")
     return t
 
 def t_FECHA(t):
@@ -84,6 +131,11 @@ def t_FECHA_HORA(t):
     print("→ Reconocí una FECHA Y HORA")
     return t
 
+def t_NUM(t):
+    r'\d+\.?\d*'              # Patrón: uno o más dígitos
+    print("→ Reconocí un NÚMERO")
+    return t
+
 def t_CARACTER(t):
     r'"M" | "F"'        # Patrón: "M" o "F"
     print("→ Reconocí un CARACTER")
@@ -93,7 +145,6 @@ def t_CADENA(t):
     r'".+?"'            # Patrón: cadena de texto
     print("→ Reconocí una CADENA DE TEXTO")
     return t
-
 #4. Se especifican los caracteres que se deben ignorar (espacios, tabuladores y saltos de línea)
 t_ignore = ' \t\n'
 
