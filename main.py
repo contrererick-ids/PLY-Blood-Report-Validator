@@ -5,7 +5,7 @@ from parser import parser
 # Prueba a realizar
 data = """
 {
-    "folio": 12345,
+    "folio": 12345678,
     "fecha_forma": "01/10/2023 14:30:12",
     "fecha_validacion": "02/10/2023 10:00:27",
     "paciente": {

@@ -8,7 +8,7 @@ def p_S(p):
     p[0] = (p[1], p[3])
 
 def p_folio(p):
-    'A : FOLIO COLON NUM COMMA B'
+    'A : FOLIO COLON NUM_FOLIO COMMA B'
     p[0] = (p[1], p[2], p[3], p[4])
 
 def p_fecha_forma(p):
@@ -36,7 +36,7 @@ def p_sexo(p):
     p[0] = (p[1], p[2], p[3], p[4])
 
 def p_edad(p):
-    'H : EDAD COLON NUM'
+    'H : EDAD COLON NUM_EDAD'
     p[0] = (p[1], p[2], p[3])
 
 def p_medico_solicitante(p):

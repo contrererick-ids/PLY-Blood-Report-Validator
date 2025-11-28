@@ -1,24 +1,33 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
+Unused terminals:
+
+    LIMITE
+    NOM_PARAMETRO
+    NUM
+    RESULTADO
+    SIMBOLO_UNIDAD_GPD
+    SIMBOLO_UNIDAD_ML
+    UNIDAD
+
 Grammar
 
 Rule 0     S' -> S
 Rule 1     S -> LKEY A RKEY
-Rule 2     A -> FOLIO COLON NUM COMMA B
+Rule 2     A -> FOLIO COLON NUM_FOLIO COMMA B
 Rule 3     B -> FECHA_FORMA COLON FECHA_HORA COMMA C
 Rule 4     C -> FECHA_VALIDACION COLON FECHA_HORA COMMA D
 Rule 5     D -> PACIENTE COLON LKEY E RKEY COMMA I
 Rule 6     E -> NOMBRE COLON CADENA COMMA F
 Rule 7     F -> FECHA_NAC COLON FECHA COMMA G
 Rule 8     G -> SEXO COLON CARACTER COMMA H
-Rule 9     H -> EDAD COLON NUM
+Rule 9     H -> EDAD COLON NUM_EDAD
 Rule 10    I -> MEDICO_SOLICIANTE COLON CADENA COMMA J
 Rule 11    J -> SECCION COLON BIOMETRIA_HEMATICA COMMA K
-Rule 12    K -> PARAMETROS COLON LTKEY O RTKEY COMMA L
+Rule 12    K -> PARAMETROS COLON LTKEY RTKEY COMMA L
 Rule 13    L -> FIRMA COLON LKEY M RKEY
 Rule 14    M -> RESPONSABLE COLON CADENA COMMA N
 Rule 15    N -> CEDULA COLON NUM_CEDULA
-Rule 16    O -> LKEY NOMBRE COLON NOM_PARAMETRO RKEY
 
 Terminals, with rules where they appear
 
@@ -26,7 +35,7 @@ BIOMETRIA_HEMATICA   : 11
 CADENA               : 6 10 14
 CARACTER             : 8
 CEDULA               : 15
-COLON                : 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+COLON                : 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 COMMA                : 2 3 4 5 6 7 8 10 11 12 14
 EDAD                 : 9
 FECHA                : 7
@@ -36,19 +45,27 @@ FECHA_NAC            : 7
 FECHA_VALIDACION     : 4
 FIRMA                : 13
 FOLIO                : 2
-LKEY                 : 1 5 13 16
+LIMITE               : 
+LKEY                 : 1 5 13
 LTKEY                : 12
 MEDICO_SOLICIANTE    : 10
-NOMBRE               : 6 16
-NUM                  : 2 9
+NOMBRE               : 6
+NOM_PARAMETRO        : 
+NUM                  : 
 NUM_CEDULA           : 15
+NUM_EDAD             : 9
+NUM_FOLIO            : 2
 PACIENTE             : 5
 PARAMETROS           : 12
 RESPONSABLE          : 14
-RKEY                 : 1 5 13 16
+RESULTADO            : 
+RKEY                 : 1 5 13
 RTKEY                : 12
 SECCION              : 11
 SEXO                 : 8
+SIMBOLO_UNIDAD_GPD   : 
+SIMBOLO_UNIDAD_ML    : 
+UNIDAD               : 
 error                : 
 
 Nonterminals, with rules where they appear
@@ -67,7 +84,553 @@ K                    : 11
 L                    : 12
 M                    : 13
 N                    : 14
-NOM_PARAMETRO        : 16
-O                    : 12
 S                    : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . LKEY A RKEY
+
+    LKEY            shift and go to state 2
+
+    S                              shift and go to state 1
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> LKEY . A RKEY
+    (2) A -> . FOLIO COLON NUM_FOLIO COMMA B
+
+    FOLIO           shift and go to state 4
+
+    A                              shift and go to state 3
+
+state 3
+
+    (1) S -> LKEY A . RKEY
+
+    RKEY            shift and go to state 5
+
+
+state 4
+
+    (2) A -> FOLIO . COLON NUM_FOLIO COMMA B
+
+    COLON           shift and go to state 6
+
+
+state 5
+
+    (1) S -> LKEY A RKEY .
+
+    $end            reduce using rule 1 (S -> LKEY A RKEY .)
+
+
+state 6
+
+    (2) A -> FOLIO COLON . NUM_FOLIO COMMA B
+
+    NUM_FOLIO       shift and go to state 7
+
+
+state 7
+
+    (2) A -> FOLIO COLON NUM_FOLIO . COMMA B
+
+    COMMA           shift and go to state 8
+
+
+state 8
+
+    (2) A -> FOLIO COLON NUM_FOLIO COMMA . B
+    (3) B -> . FECHA_FORMA COLON FECHA_HORA COMMA C
+
+    FECHA_FORMA     shift and go to state 10
+
+    B                              shift and go to state 9
+
+state 9
+
+    (2) A -> FOLIO COLON NUM_FOLIO COMMA B .
+
+    RKEY            reduce using rule 2 (A -> FOLIO COLON NUM_FOLIO COMMA B .)
+
+
+state 10
+
+    (3) B -> FECHA_FORMA . COLON FECHA_HORA COMMA C
+
+    COLON           shift and go to state 11
+
+
+state 11
+
+    (3) B -> FECHA_FORMA COLON . FECHA_HORA COMMA C
+
+    FECHA_HORA      shift and go to state 12
+
+
+state 12
+
+    (3) B -> FECHA_FORMA COLON FECHA_HORA . COMMA C
+
+    COMMA           shift and go to state 13
+
+
+state 13
+
+    (3) B -> FECHA_FORMA COLON FECHA_HORA COMMA . C
+    (4) C -> . FECHA_VALIDACION COLON FECHA_HORA COMMA D
+
+    FECHA_VALIDACION shift and go to state 15
+
+    C                              shift and go to state 14
+
+state 14
+
+    (3) B -> FECHA_FORMA COLON FECHA_HORA COMMA C .
+
+    RKEY            reduce using rule 3 (B -> FECHA_FORMA COLON FECHA_HORA COMMA C .)
+
+
+state 15
+
+    (4) C -> FECHA_VALIDACION . COLON FECHA_HORA COMMA D
+
+    COLON           shift and go to state 16
+
+
+state 16
+
+    (4) C -> FECHA_VALIDACION COLON . FECHA_HORA COMMA D
+
+    FECHA_HORA      shift and go to state 17
+
+
+state 17
+
+    (4) C -> FECHA_VALIDACION COLON FECHA_HORA . COMMA D
+
+    COMMA           shift and go to state 18
+
+
+state 18
+
+    (4) C -> FECHA_VALIDACION COLON FECHA_HORA COMMA . D
+    (5) D -> . PACIENTE COLON LKEY E RKEY COMMA I
+
+    PACIENTE        shift and go to state 20
+
+    D                              shift and go to state 19
+
+state 19
+
+    (4) C -> FECHA_VALIDACION COLON FECHA_HORA COMMA D .
+
+    RKEY            reduce using rule 4 (C -> FECHA_VALIDACION COLON FECHA_HORA COMMA D .)
+
+
+state 20
+
+    (5) D -> PACIENTE . COLON LKEY E RKEY COMMA I
+
+    COLON           shift and go to state 21
+
+
+state 21
+
+    (5) D -> PACIENTE COLON . LKEY E RKEY COMMA I
+
+    LKEY            shift and go to state 22
+
+
+state 22
+
+    (5) D -> PACIENTE COLON LKEY . E RKEY COMMA I
+    (6) E -> . NOMBRE COLON CADENA COMMA F
+
+    NOMBRE          shift and go to state 24
+
+    E                              shift and go to state 23
+
+state 23
+
+    (5) D -> PACIENTE COLON LKEY E . RKEY COMMA I
+
+    RKEY            shift and go to state 25
+
+
+state 24
+
+    (6) E -> NOMBRE . COLON CADENA COMMA F
+
+    COLON           shift and go to state 26
+
+
+state 25
+
+    (5) D -> PACIENTE COLON LKEY E RKEY . COMMA I
+
+    COMMA           shift and go to state 27
+
+
+state 26
+
+    (6) E -> NOMBRE COLON . CADENA COMMA F
+
+    CADENA          shift and go to state 28
+
+
+state 27
+
+    (5) D -> PACIENTE COLON LKEY E RKEY COMMA . I
+    (10) I -> . MEDICO_SOLICIANTE COLON CADENA COMMA J
+
+    MEDICO_SOLICIANTE shift and go to state 30
+
+    I                              shift and go to state 29
+
+state 28
+
+    (6) E -> NOMBRE COLON CADENA . COMMA F
+
+    COMMA           shift and go to state 31
+
+
+state 29
+
+    (5) D -> PACIENTE COLON LKEY E RKEY COMMA I .
+
+    RKEY            reduce using rule 5 (D -> PACIENTE COLON LKEY E RKEY COMMA I .)
+
+
+state 30
+
+    (10) I -> MEDICO_SOLICIANTE . COLON CADENA COMMA J
+
+    COLON           shift and go to state 32
+
+
+state 31
+
+    (6) E -> NOMBRE COLON CADENA COMMA . F
+    (7) F -> . FECHA_NAC COLON FECHA COMMA G
+
+    FECHA_NAC       shift and go to state 34
+
+    F                              shift and go to state 33
+
+state 32
+
+    (10) I -> MEDICO_SOLICIANTE COLON . CADENA COMMA J
+
+    CADENA          shift and go to state 35
+
+
+state 33
+
+    (6) E -> NOMBRE COLON CADENA COMMA F .
+
+    RKEY            reduce using rule 6 (E -> NOMBRE COLON CADENA COMMA F .)
+
+
+state 34
+
+    (7) F -> FECHA_NAC . COLON FECHA COMMA G
+
+    COLON           shift and go to state 36
+
+
+state 35
+
+    (10) I -> MEDICO_SOLICIANTE COLON CADENA . COMMA J
+
+    COMMA           shift and go to state 37
+
+
+state 36
+
+    (7) F -> FECHA_NAC COLON . FECHA COMMA G
+
+    FECHA           shift and go to state 38
+
+
+state 37
+
+    (10) I -> MEDICO_SOLICIANTE COLON CADENA COMMA . J
+    (11) J -> . SECCION COLON BIOMETRIA_HEMATICA COMMA K
+
+    SECCION         shift and go to state 40
+
+    J                              shift and go to state 39
+
+state 38
+
+    (7) F -> FECHA_NAC COLON FECHA . COMMA G
+
+    COMMA           shift and go to state 41
+
+
+state 39
+
+    (10) I -> MEDICO_SOLICIANTE COLON CADENA COMMA J .
+
+    RKEY            reduce using rule 10 (I -> MEDICO_SOLICIANTE COLON CADENA COMMA J .)
+
+
+state 40
+
+    (11) J -> SECCION . COLON BIOMETRIA_HEMATICA COMMA K
+
+    COLON           shift and go to state 42
+
+
+state 41
+
+    (7) F -> FECHA_NAC COLON FECHA COMMA . G
+    (8) G -> . SEXO COLON CARACTER COMMA H
+
+    SEXO            shift and go to state 44
+
+    G                              shift and go to state 43
+
+state 42
+
+    (11) J -> SECCION COLON . BIOMETRIA_HEMATICA COMMA K
+
+    BIOMETRIA_HEMATICA shift and go to state 45
+
+
+state 43
+
+    (7) F -> FECHA_NAC COLON FECHA COMMA G .
+
+    RKEY            reduce using rule 7 (F -> FECHA_NAC COLON FECHA COMMA G .)
+
+
+state 44
+
+    (8) G -> SEXO . COLON CARACTER COMMA H
+
+    COLON           shift and go to state 46
+
+
+state 45
+
+    (11) J -> SECCION COLON BIOMETRIA_HEMATICA . COMMA K
+
+    COMMA           shift and go to state 47
+
+
+state 46
+
+    (8) G -> SEXO COLON . CARACTER COMMA H
+
+    CARACTER        shift and go to state 48
+
+
+state 47
+
+    (11) J -> SECCION COLON BIOMETRIA_HEMATICA COMMA . K
+    (12) K -> . PARAMETROS COLON LTKEY RTKEY COMMA L
+
+    PARAMETROS      shift and go to state 50
+
+    K                              shift and go to state 49
+
+state 48
+
+    (8) G -> SEXO COLON CARACTER . COMMA H
+
+    COMMA           shift and go to state 51
+
+
+state 49
+
+    (11) J -> SECCION COLON BIOMETRIA_HEMATICA COMMA K .
+
+    RKEY            reduce using rule 11 (J -> SECCION COLON BIOMETRIA_HEMATICA COMMA K .)
+
+
+state 50
+
+    (12) K -> PARAMETROS . COLON LTKEY RTKEY COMMA L
+
+    COLON           shift and go to state 52
+
+
+state 51
+
+    (8) G -> SEXO COLON CARACTER COMMA . H
+    (9) H -> . EDAD COLON NUM_EDAD
+
+    EDAD            shift and go to state 54
+
+    H                              shift and go to state 53
+
+state 52
+
+    (12) K -> PARAMETROS COLON . LTKEY RTKEY COMMA L
+
+    LTKEY           shift and go to state 55
+
+
+state 53
+
+    (8) G -> SEXO COLON CARACTER COMMA H .
+
+    RKEY            reduce using rule 8 (G -> SEXO COLON CARACTER COMMA H .)
+
+
+state 54
+
+    (9) H -> EDAD . COLON NUM_EDAD
+
+    COLON           shift and go to state 56
+
+
+state 55
+
+    (12) K -> PARAMETROS COLON LTKEY . RTKEY COMMA L
+
+    RTKEY           shift and go to state 57
+
+
+state 56
+
+    (9) H -> EDAD COLON . NUM_EDAD
+
+    NUM_EDAD        shift and go to state 58
+
+
+state 57
+
+    (12) K -> PARAMETROS COLON LTKEY RTKEY . COMMA L
+
+    COMMA           shift and go to state 59
+
+
+state 58
+
+    (9) H -> EDAD COLON NUM_EDAD .
+
+    RKEY            reduce using rule 9 (H -> EDAD COLON NUM_EDAD .)
+
+
+state 59
+
+    (12) K -> PARAMETROS COLON LTKEY RTKEY COMMA . L
+    (13) L -> . FIRMA COLON LKEY M RKEY
+
+    FIRMA           shift and go to state 61
+
+    L                              shift and go to state 60
+
+state 60
+
+    (12) K -> PARAMETROS COLON LTKEY RTKEY COMMA L .
+
+    RKEY            reduce using rule 12 (K -> PARAMETROS COLON LTKEY RTKEY COMMA L .)
+
+
+state 61
+
+    (13) L -> FIRMA . COLON LKEY M RKEY
+
+    COLON           shift and go to state 62
+
+
+state 62
+
+    (13) L -> FIRMA COLON . LKEY M RKEY
+
+    LKEY            shift and go to state 63
+
+
+state 63
+
+    (13) L -> FIRMA COLON LKEY . M RKEY
+    (14) M -> . RESPONSABLE COLON CADENA COMMA N
+
+    RESPONSABLE     shift and go to state 65
+
+    M                              shift and go to state 64
+
+state 64
+
+    (13) L -> FIRMA COLON LKEY M . RKEY
+
+    RKEY            shift and go to state 66
+
+
+state 65
+
+    (14) M -> RESPONSABLE . COLON CADENA COMMA N
+
+    COLON           shift and go to state 67
+
+
+state 66
+
+    (13) L -> FIRMA COLON LKEY M RKEY .
+
+    RKEY            reduce using rule 13 (L -> FIRMA COLON LKEY M RKEY .)
+
+
+state 67
+
+    (14) M -> RESPONSABLE COLON . CADENA COMMA N
+
+    CADENA          shift and go to state 68
+
+
+state 68
+
+    (14) M -> RESPONSABLE COLON CADENA . COMMA N
+
+    COMMA           shift and go to state 69
+
+
+state 69
+
+    (14) M -> RESPONSABLE COLON CADENA COMMA . N
+    (15) N -> . CEDULA COLON NUM_CEDULA
+
+    CEDULA          shift and go to state 71
+
+    N                              shift and go to state 70
+
+state 70
+
+    (14) M -> RESPONSABLE COLON CADENA COMMA N .
+
+    RKEY            reduce using rule 14 (M -> RESPONSABLE COLON CADENA COMMA N .)
+
+
+state 71
+
+    (15) N -> CEDULA . COLON NUM_CEDULA
+
+    COLON           shift and go to state 72
+
+
+state 72
+
+    (15) N -> CEDULA COLON . NUM_CEDULA
+
+    NUM_CEDULA      shift and go to state 73
+
+
+state 73
+
+    (15) N -> CEDULA COLON NUM_CEDULA .
+
+    RKEY            reduce using rule 15 (N -> CEDULA COLON NUM_CEDULA .)
 

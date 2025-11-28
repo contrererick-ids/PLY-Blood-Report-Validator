@@ -2,10 +2,12 @@
 import ply.lex as lex
 
 #2.  Se define una lista de tokens que el analizador léxico reconocerá.
-tokens = ('FOLIO', 'FECHA_FORMA', 'FECHA_VALIDACION', 'PACIENTE', 'NOMBRE', 'FECHA_NAC', 'SEXO', 'EDAD',
-          'MEDICO_SOLICIANTE', 'SECCION', 'BIOMETRIA_HEMATICA', 'PARAMETROS',
+tokens = ('FOLIO', 'NUM_FOLIO', 'FECHA_FORMA', 'FECHA_VALIDACION', 'PACIENTE', 'NOMBRE', 'FECHA_NAC', 'SEXO', 'EDAD',
+          'MEDICO_SOLICIANTE', 'SECCION', 'BIOMETRIA_HEMATICA', 'PARAMETROS', 'NOM_PARAMETRO', 'RESULTADO', 'UNIDAD', 'SIMBOLO_UNIDAD_ML',
+          'SIMBOLO_UNIDAD_GPD',
+          'LIMITE', 
           'FIRMA', 'RESPONSABLE', 'CEDULA', 'NUM_CEDULA',
-          'NUM', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA')
+          'NUM', 'NUM_EDAD', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA')
 
 # 3. Se definen las expresiones regulares para cada token a través de una función
 # Palabras reservadas
@@ -84,7 +86,32 @@ def t_CEDULA(t):
     print("→ ReconocÍ la PALABRA RESERVADA CEDULA")
     return t
 
+def t_RESULTADO(t):
+    r'"resultado"'      # Patrón: palabra reservada RESULTADO
+    print("→ ReconocÍ la PALABRA RESERVADA RESULTADO")
+    return t
+
+def t_UNIDAD(t):
+    r'"unidad"'         # Patrón: palabra reservada UNIDAD
+    print("→ ReconocÍ la PALABRA RESERVADA UNIDAD")
+    return t
+
+def t_LIMITE(t):
+    r'"limite"'         # Patrón: palabra reservada LIMITE
+    print("→ ReconocÍ la PALABRA RESERVADA LIMITE")
+    return t
+
 # Símbolos reservados
+def t_SIMBOLO_UNIDAD_ML(t):
+    r'"/μL" '     # Patrón: cadena de texto para símbolo de unidad
+    print("→ ReconocÍ un SÍMBOLO DE UNIDAD")
+    return t
+
+def t_SIMBOLO_UNIDAD_GPD(t):
+    r'"g/dL" '     # Patrón: cadena de texto para símbolo de unidad
+    print("→ ReconocÍ un SÍMBOLO DE UNIDAD")
+    return t
+
 def t_LKEY(t):
     r'\{'               # Patrón: símbolo { (escapado)
     print("→ Reconocí una LLAVE IZQ")
@@ -116,6 +143,11 @@ def t_COMMA(t):
     return t
 
 # Tipos de datos
+def t_NOM_PARAMETRO(t):
+    r'"Leucocitos" | "Eritrocitos" | "Hemoglobina" | "Hematocrito" | "Plaquetas" | "Neutrófilos" | "Linfocitos" | "Monocitos" '  # Patrón: cadena de texto para nombre de parámetro
+    print("→ ReconocÍ un NOMBRE DE PARÁMETRO")
+    return t
+
 def t_NUM_CEDULA(t):
     r'"\d{8}"'            # Patrón: cadena de dígitos entre comillas
     print("→ ReconocÍ una CÉDULA")
@@ -129,6 +161,16 @@ def t_FECHA(t):
 def t_FECHA_HORA(t):
     r'"\d{2}[/]\d{2}[/]\d{4}\s\d{2}[:]\d{2}[:]\d{2}"'    # Patrón: dd/mm/yyyy hh:mm:ss
     print("→ Reconocí una FECHA Y HORA")
+    return t
+
+def t_NUM_FOLIO(t):
+    r'\d{8}'                # Patrón: ocho dígitos
+    print("→ ReconocÍ una FOLIO")
+    return t
+
+def t_NUM_EDAD(t):
+    r'\d{1,3}'                # Patrón: uno a tres dígitos
+    print("→ ReconocÍ una EDAD")
     return t
 
 def t_NUM(t):
