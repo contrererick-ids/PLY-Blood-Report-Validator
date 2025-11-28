@@ -63,29 +63,37 @@ def p_cedula(p):
     'N : CEDULA COLON NUM_CEDULA'
     p[0] = (p[1], p[2], p[3])
 
-def p_leucocitos_parametro(p):
-    'O : LKEY NOMBRE COLON LEUCOCITOS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES RKEY COMMA P'
-    p[0] = (p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18])
+def p_lista_parametros_multiple(p):
+    'O : O COMMA PARAMETRO'
+    p[0] = p[1] + [p[3]]
 
-def p_eritrocitos_parametro(p):
-    'O : LKEY NOMBRE COLON ERITROCITOS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES RKEY COMMA P'
-    p[0] = (p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18])
+def p_lista_parametros_simple(p):
+    'O : PARAMETRO'
+    p[0] = [p[1]]
 
-def p_hemoglobina_parametro(p):
-    'O : LKEY NOMBRE COLON HEMOGLOBINA COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_GPD COMMA LIMITE COLON LIMITE_VALUES RKEY COMMA P'
-    p[0] = (p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18])
+def p_parametro_leucocitos(p):
+    'PARAMETRO : LKEY NOMBRE COLON LEUCOCITOS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('leucocitos', p[4], p[8], p[12], p[16], p[17])
 
-def p_hematrocito_parametro(p):
-    'O : LKEY NOMBRE COLON PLAQUETAS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_PORCENTAJE COMMA LIMITE COLON LIMITE_VALUES RKEY COMMA P'
-    p[0] = (p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18])
+def p_parametro_eritrocitos(p):
+    'PARAMETRO : LKEY NOMBRE COLON ERITROCITOS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('eritrocitos', p[4], p[8], p[12], p[16], p[17])
 
-def p_plaquetas_parametro(p):
-    'O : LKEY NOMBRE COLON PLAQUETAS COMMA RESULTADO COLON NUM_PLAQUETAS COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES RKEY COMMA P'
-    p[0] = (p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18])
+def p_parametro_hemoglobina(p):
+    'PARAMETRO : LKEY NOMBRE COLON HEMOGLOBINA COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_GPD COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('hemoglobina', p[4], p[8], p[12], p[16], p[17])
 
-def p_nota_opcional(p):
-    'P : NOTA COLON SIMBOLOS_NOTA'
-    p[0] = p[3]
+def p_parametro_hematocrito(p):
+    'PARAMETRO : LKEY NOMBRE COLON HEMATOCRITO COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_PORCENTAJE COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('hematocrito', p[4], p[8], p[12], p[16], p[17])
+
+def p_parametro_plaquetas(p):
+    'PARAMETRO : LKEY NOMBRE COLON PLAQUETAS COMMA RESULTADO COLON NUM_PLAQUETAS COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('plaquetas', p[4], p[8], p[12], p[16], p[17])
+
+def p_nota_con_coma(p):
+    'P : COMMA NOTA COLON SIMBOLOS_NOTA'
+    p[0] = p[4]
 
 def p_nota_vacia(p):
     'P : '

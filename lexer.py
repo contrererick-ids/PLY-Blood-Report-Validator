@@ -7,7 +7,7 @@ tokens = ('FOLIO', 'NUM_FOLIO', 'FECHA_FORMA', 'FECHA_VALIDACION', 'PACIENTE', '
           'LEUCOCITOS', 'ERITROCITOS', 'HEMOGLOBINA', 'HEMATOCRITO', 'PLAQUETAS', 'NEUTROFILOS', 'LINFOCITOS', 'MONOCITOS',
           'SIMBOLO_UNIDAD_MCPL', 'SIMBOLO_UNIDAD_GPD', 'SIMBOLO_UNIDAD_PORCENTAJE', 'NUM_RESULTADO', 'NUM_PLAQUETAS', 'LIMITE_VALUES', 'NOTA', 'SIMBOLOS_NOTA',
           'FIRMA', 'RESPONSABLE', 'CEDULA', 'NUM_CEDULA',
-          'NUM', 'NUM_EDAD', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA', 'DASH')
+          'NUM_EDAD', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA')
 
 # 3. Se definen las expresiones regulares para cada token a través de una función
 # Palabras reservadas
@@ -187,11 +187,6 @@ def t_RTKEY(t):
     print("→ ReconocÍ un CORCHETE DER")
     return t
 
-def t_DASH(t):
-    r'-\s'                # Patrón: símbolo : (escapado)
-    print("→ Reconocí DOS PUNTOS")
-    return t
-
 def t_COLON(t):
     r':\s'                # Patrón: símbolo : (escapado)
     print("→ Reconocí DOS PUNTOS")
@@ -233,16 +228,15 @@ def t_NUM_EDAD(t):
     print("→ ReconocÍ una EDAD")
     return t
 
+def t_NUM_PLAQUETAS(t):
+    r'\d{3}'              # Patrón: uno o más dígitos con opcional punto decimal
+    print("→ Reconocí un RESULTADO NUMÉRICO")
+    return t
+
 def t_NUM_RESULTADO(t):
     r'\d{1,2}\.?\d*'              # Patrón: uno o más dígitos con opcional punto decimal
     print("→ Reconocí un RESULTADO NUMÉRICO")
     return t
-
-def t_NUM_PLAQUETAS(t):
-    r'\d{3}\.?\d*'              # Patrón: uno o más dígitos con opcional punto decimal
-    print("→ Reconocí un RESULTADO NUMÉRICO")
-    return t
-
 
 def t_CARACTER(t):
     r'"M" | "F"'        # Patrón: "M" o "F"
