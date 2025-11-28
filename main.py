@@ -17,7 +17,12 @@ data = """
     "medico_solicitante": "Dra. María López",
     "seccion": "Biometría Hemática",
     "parametros": [
-     ],
+        {"nombre": "Leucocitos", "resultado": 5.9, "unidad": "10^3/μL", "limite": "[4.5 - 10.0]"},
+        {"nombre": "Eritrocitos", "resultado": 4.82, "unidad": "10^6/μL", "limite": "[4.3 - 5.8]"},
+        {"nombre": "Hemoglobina", "resultado": 14.2, "unidad": "g/dL", "limite": "[12.0 - 16.0]"},
+        {"nombre": "Hematocrito", "resultado": 42.5, "unidad": "%", "limite": "[36.0 - 46.0]"},
+        {"nombre": "Plaquetas", "resultado": 210, "unidad": "10^3/μL", "limite": "[150 - 400]", "nota": "+"}
+    ],
     "firma": {
         "responsable": "Dra. María López",
         "cedula": "12345678"
