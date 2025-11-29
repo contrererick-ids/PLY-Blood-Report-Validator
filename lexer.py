@@ -97,7 +97,7 @@ def t_PLAQUETAS(t):
     return t
 
 def t_NEUTROFILOS(t):
-    r'"Neutrofilos"'    # Patrón: palabra reservada NEUTROFILOS
+    r'"Neutrófilos"'    # Patrón: palabra reservada NEUTROFILOS
     print("→ ReconocÍ la PALABRA RESERVADA NEUTROFILOS")
     return t
 

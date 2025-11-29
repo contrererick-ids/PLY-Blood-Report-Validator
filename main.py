@@ -21,7 +21,10 @@ data = """
         {"nombre": "Eritrocitos", "resultado": 4.82, "unidad": "10^6/μL", "limite": "[4.3 - 5.8]"},
         {"nombre": "Hemoglobina", "resultado": 14.2, "unidad": "g/dL", "limite": "[12.0 - 16.0]"},
         {"nombre": "Hematocrito", "resultado": 42.5, "unidad": "%", "limite": "[36.0 - 46.0]"},
-        {"nombre": "Plaquetas", "resultado": 210, "unidad": "10^3/μL", "limite": "[150 - 400]", "nota": "+"}
+        {"nombre": "Plaquetas", "resultado": 210, "unidad": "10^3/μL", "limite": "[150 - 400]", "nota": "+"},
+        {"nombre": "Neutrófilos", "resultado": 4.8, "unidad": "10^3/μL", "limite": "[1.5 - 7.5]"},
+        {"nombre": "Linfocitos", "resultado": 2.1, "unidad": "10^3/μL", "limite": "[1.0 - 3.5]"},
+        {"nombre": "Monocitos", "resultado": 0.6, "unidad": "10^3/μL", "limite": "[0.2 - 1.0]", "nota": "+"}
     ],
     "firma": {
         "responsable": "Dra. María López",
