@@ -1,3 +1,4 @@
+
 # PLY-Blood-Report-Validator
 
 Un analizador léxico y sintáctico para reportes de laboratorio médico, diseñado específicamente para analizar y validar reportes de Biometría Hemática Completa en formato JSON.
@@ -80,7 +81,7 @@ El archivo principal:
 ## 🚀 Uso
 
 ### Ejecutar el Analizador
-```bash
+```sh
 python main.py
 ```
 

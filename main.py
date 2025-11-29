@@ -1,33 +1,61 @@
-# Importa el analizador léxico definido en lexer.py y el analizador sintáctico definido en parser.py
+# main.py — versión final integrada con análisis léxico, sintáctico y semántico
+
 from lexer import lexer
 from parser import parser
+from semantic import validar_semantica
+from errors import errors, print_errors
 
-# Prueba a realizar
+# Archivo a validar
 archivo = "ejemplo.json"
-with open(archivo, 'r', encoding = 'utf-8') as json_archivo:
+
+with open(archivo, 'r', encoding='utf-8') as json_archivo:
     data = json_archivo.read()
 
-# Array que almacena la cantidad de errores encontrados
-errores_totales = []
+print("\n=================================================")
+print(f" Validando archivo: {archivo}")
+print("=================================================\n")
 
-# Cadena de entrada
-lexer.input(data) # Se analiza la cadena por el analizador léxico
+# ---------------------- ANÁLISIS LÉXICO ----------------------
+print("======== ANÁLISIS LÉXICO ========")
+lexer.input(data)
 
-print(f"Analizando: \n{data}")
-print("\n======== ANÁLISIS LÉXICO ========")
-print("Tokens:")
 for token in lexer:
-    print(f'Token: {token.type}, Valor: {token.value}') #Se imprimen los tokens generados por el analizador
+    print(f"Token: {token.type:15} Valor: {token.value}")
 
+# ---------------------- ANÁLISIS SINTÁCTICO ----------------------
 print("\n======== ANÁLISIS SINTÁCTICO ========")
-result = parser.parse(data) # Se analiza la cadena por el parser sintáctico
-print("\nResultado del análisis sintáctico: ")
-print(result) # Se imprime el analisis
+resultado = parser.parse(data)
 
-# print(f"\n======== Validación del archivo {archivo} ========")
-# if errores_totales > 10:
-#     print(f"❌ Estructura general no válida, se han encontrado {errores_totales} errores en el archivo")
-# else:
-#     print("✅ Estructura general válida")
-#     # Aqui tmb se tienen que imprimir todos los errores sintacticos, semanticos o lexicos que aparezcan durante la ejecucion del codigo
-#     print(f"✅ Archivo verificado con {errores_totales} advertencias")
+if resultado is None:
+    print("❌ Error: No se pudo generar el árbol sintáctico.\n")
+else:
+    print("✔ Estructura general válida.\n")
+    print("Árbol sintáctico:")
+    print(resultado)
+
+# ---------------------- ANÁLISIS SEMÁNTICO ----------------------
+print("\n======== ANÁLISIS SEMÁNTICO ========")
+
+if resultado:
+    validar_semantica(resultado)
+else:
+    print("❌ No se ejecutó el análisis semántico debido a errores sintácticos.\n")
+
+# ---------------------- REPORTE FINAL ----------------------
+print_errors()
+
+total_errores = (
+    len(errors["lexicos"]) +
+    len(errors["sintacticos"]) +
+    len(errors["semanticos"])
+)
+
+print("\n=================================================")
+print(f" Archivo: {archivo}")
+print("-------------------------------------------------")
+if total_errores == 0:
+    print("✔ Archivo totalmente válido.")
+else:
+    print(f"❌ Archivo con {total_errores} error(es) encontrados.")
+
+print("=================================================\n")
