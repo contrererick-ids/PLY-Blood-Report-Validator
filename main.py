@@ -1,35 +1,21 @@
 # Importa el analizador léxico definido en lexer.py y el analizador sintáctico definido en parser.py
 from lexer import lexer
 from parser import parser
+import json
 
 # Prueba a realizar
-data = """
-{
-    "folio": 12345678,
-    "fecha_forma": "01/10/2023 14:30:12",
-    "fecha_validacion": "02/10/2023 10:00:27",
-    "paciente": {
-        "nombre": "Juan Pérez",
-        "fecha_nacimiento": "15/05/1980",
-        "sexo": "M",
-        "edad": 43
-    },
-    "medico_solicitante": "Dra. María López",
-    "seccion": "Biometría Hemática",
-    "parametros": [
-     ],
-    "firma": {
-        "responsable": "Dra. María López",
-        "cedula": "12345678"
-    }
-}
-"""
+archivo = "ejemplo.json"
+with open(archivo, 'r', encoding = 'utf-8') as json_archivo:
+    data = json_archivo.read()
+
+# Array que almacena la cantidad de errores encontrados
+errores_totales = []
 
 # Cadena de entrada
 lexer.input(data) # Se analiza la cadena por el analizador léxico
 
-print(f"Analizando: {data}")
-print("======== ANÁLISIS LÉXICO ========")
+print(f"Analizando: \n{data}")
+print("\n======== ANÁLISIS LÉXICO ========")
 print("Tokens:")
 for token in lexer:
     print(f'Token: {token.type}, Valor: {token.value}') #Se imprimen los tokens generados por el analizador
@@ -38,3 +24,11 @@ print("\n======== ANÁLISIS SINTÁCTICO ========")
 result = parser.parse(data) # Se analiza la cadena por el parser sintáctico
 print("\nResultado del análisis sintáctico: ")
 print(result) # Se imprime el analisis
+
+# print(f"\n======== Validación del archivo {archivo} ========")
+# if errores_totales > 10:
+#     print(f"❌ Estructura general no válida, se han encontrado {errores_totales} errores en el archivo")
+# else:
+#     print("✅ Estructura general válida")
+#     # Aqui tmb se tienen que imprimir todos los errores sintacticos, semanticos o lexicos que aparezcan durante la ejecucion del codigo
+#     print(f"✅ Archivo verificado con {errores_totales} advertencias")

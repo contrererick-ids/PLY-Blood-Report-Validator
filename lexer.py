@@ -165,7 +165,7 @@ def t_FECHA_HORA(t):
 
 def t_NUM_FOLIO(t):
     r'\d{8}'                # Patrón: ocho dígitos
-    print("→ ReconocÍ una FOLIO")
+    print("→ ReconocÍ un FOLIO")
     return t
 
 def t_NUM_EDAD(t):
