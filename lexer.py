@@ -3,11 +3,11 @@ import ply.lex as lex
 
 #2.  Se define una lista de tokens que el analizador léxico reconocerá.
 tokens = ('FOLIO', 'NUM_FOLIO', 'FECHA_FORMA', 'FECHA_VALIDACION', 'PACIENTE', 'NOMBRE', 'FECHA_NAC', 'SEXO', 'EDAD',
-          'MEDICO_SOLICIANTE', 'SECCION', 'BIOMETRIA_HEMATICA', 'PARAMETROS', 'NOM_PARAMETRO', 'RESULTADO', 'UNIDAD', 'SIMBOLO_UNIDAD_ML',
-          'SIMBOLO_UNIDAD_GPD',
-          'LIMITE', 
+          'MEDICO_SOLICIANTE', 'SECCION', 'BIOMETRIA_HEMATICA', 'PARAMETROS', 'RESULTADO', 'UNIDAD', 'LIMITE', 
+          'LEUCOCITOS', 'ERITROCITOS', 'HEMOGLOBINA', 'HEMATOCRITO', 'PLAQUETAS', 'NEUTROFILOS', 'LINFOCITOS', 'MONOCITOS',
+          'SIMBOLO_UNIDAD_MCPL', 'SIMBOLO_UNIDAD_GPD', 'SIMBOLO_UNIDAD_PORCENTAJE', 'NUM_RESULTADO', 'NUM_PLAQUETAS', 'LIMITE_VALUES', 'NOTA', 'SIMBOLOS_NOTA',
           'FIRMA', 'RESPONSABLE', 'CEDULA', 'NUM_CEDULA',
-          'NUM', 'NUM_EDAD', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA')
+          'NUM_EDAD', 'FECHA', 'FECHA_HORA', 'CADENA', 'CARACTER', 'LKEY', 'RKEY', 'LTKEY', 'RTKEY', 'COLON', 'COMMA')
 
 # 3. Se definen las expresiones regulares para cada token a través de una función
 # Palabras reservadas
@@ -71,6 +71,56 @@ def t_PARAMETROS(t):
     print("→ ReconocÍ la PALABRA RESERVADA PARAMETROS")
     return t
 
+def t_LEUCOCITOS(t):
+    r'"Leucocitos"'     # Patrón: palabra reservada LEUCOCITOS
+    print("→ ReconocÍ la PALABRA RESERVADA LEUCOCITOS")
+    return t
+
+def t_ERITROCITOS(t):
+    r'"Eritrocitos"'    # Patrón: palabra reservada ERITROCITOS
+    print("→ ReconocÍ la PALABRA RESERVADA ERITROCITOS")
+    return t
+
+def t_HEMOGLOBINA(t):
+    r'"Hemoglobina"'    # Patrón: palabra reservada HEMOGLOBINA
+    print("→ ReconocÍ la PALABRA RESERVADA HEMOGLOBINA")
+    return t
+
+def t_HEMATOCRITO(t):
+    r'"Hematocrito"'    # Patrón: palabra reservada HEMATOCRITO
+    print("→ ReconocÍ la PALABRA RESERVADA HEMATOCRITO")
+    return t
+
+def t_PLAQUETAS(t):
+    r'"Plaquetas"'      # Patrón: palabra reservada PLAQUETAS
+    print("→ ReconocÍ la PALABRA RESERVADA PLAQUETAS")
+    return t
+
+def t_NEUTROFILOS(t):
+    r'"Neutrofilos"'    # Patrón: palabra reservada NEUTROFILOS
+    print("→ ReconocÍ la PALABRA RESERVADA NEUTROFILOS")
+    return t
+
+def t_LINFOCITOS(t):
+    r'"Linfocitos"'     # Patrón: palabra reservada LINFOCITOS
+    print("→ ReconocÍ la PALABRA RESERVADA LINFOCITOS")
+    return t
+
+def t_MONOCITOS(t):
+    r'"Monocitos"'      # Patrón: palabra reservada MONOCITOS
+    print("→ ReconocÍ la PALABRA RESERVADA MONOCITOS")
+    return t
+
+def t_NOTA(t):
+    r'"nota"'           # Patrón: palabra reservada NOTA
+    print("→ ReconocÍ la PALABRA RESERVADA NOTA")
+    return t
+
+def t_SIMBOLOS_NOTA(t):
+    r'"\*?\**?\+?"'            # Patrón: cadena de texto para símbolos de nota
+    print("→ ReconocÍ los SÍMBOLOS DE NOTA")
+    return t
+
 def t_FIRMA(t):
     r'"firma"'          # Patrón: palabra reservada FIRMA
     print("→ ReconocÍ la PALABRA RESERVADA FIRMA")
@@ -102,14 +152,19 @@ def t_LIMITE(t):
     return t
 
 # Símbolos reservados
-def t_SIMBOLO_UNIDAD_ML(t):
-    r'"/μL" '     # Patrón: cadena de texto para símbolo de unidad
-    print("→ ReconocÍ un SÍMBOLO DE UNIDAD")
+def t_SIMBOLO_UNIDAD_MCPL(t):
+    r'"10\^\d+/[μm]L"'     # Patrón: cadena de texto para símbolo de unidad
+    print("→ ReconocÍ un SÍMBOLO DE UNIDAD DE MILIMETROS CUBICOS POR LITRO")
     return t
 
 def t_SIMBOLO_UNIDAD_GPD(t):
     r'"g/dL" '     # Patrón: cadena de texto para símbolo de unidad
-    print("→ ReconocÍ un SÍMBOLO DE UNIDAD")
+    print("→ ReconocÍ un SÍMBOLO DE UNIDAD DE GRAMOS POR DECILITRO")
+    return t
+
+def t_SIMBOLO_UNIDAD_PORCENTAJE(t):
+    r'"%" '     # Patrón: cadena de texto para símbolo de unidad
+    print("→ ReconocÍ un SÍMBOLO DE UNIDAD DE PORCENTAJE")
     return t
 
 def t_LKEY(t):
@@ -143,9 +198,9 @@ def t_COMMA(t):
     return t
 
 # Tipos de datos
-def t_NOM_PARAMETRO(t):
-    r'"Leucocitos" | "Eritrocitos" | "Hemoglobina" | "Hematocrito" | "Plaquetas" | "Neutrófilos" | "Linfocitos" | "Monocitos" '  # Patrón: cadena de texto para nombre de parámetro
-    print("→ ReconocÍ un NOMBRE DE PARÁMETRO")
+def t_LIMITE_VALUES(t):
+    r'"\[\d{1,3}\.?\d*\s-\s\d{1,3}\.?\d*\]"'   # Patrón: cadena de texto para límite de valores "[num - num]"
+    print("→ ReconocÍ un RANGO DE LÍMITES")
     return t
 
 def t_NUM_CEDULA(t):
@@ -169,13 +224,18 @@ def t_NUM_FOLIO(t):
     return t
 
 def t_NUM_EDAD(t):
-    r'\d{1,3}'                # Patrón: uno a tres dígitos
+    r'\d{1,2}(?!\d|\.)'                # Patrón: uno a tres dígitos y que NO acepta decimales
     print("→ ReconocÍ una EDAD")
     return t
 
-def t_NUM(t):
-    r'\d+\.?\d*'              # Patrón: uno o más dígitos
-    print("→ Reconocí un NÚMERO")
+def t_NUM_PLAQUETAS(t):
+    r'\d{3}'              # Patrón: uno o más dígitos con opcional punto decimal
+    print("→ Reconocí un RESULTADO NUMÉRICO")
+    return t
+
+def t_NUM_RESULTADO(t):
+    r'\d{1,2}\.?\d*'              # Patrón: uno o más dígitos con opcional punto decimal
+    print("→ Reconocí un RESULTADO NUMÉRICO")
     return t
 
 def t_CARACTER(t):
@@ -187,6 +247,7 @@ def t_CADENA(t):
     r'".+?"'            # Patrón: cadena de texto
     print("→ Reconocí una CADENA DE TEXTO")
     return t
+
 #4. Se especifican los caracteres que se deben ignorar (espacios, tabuladores y saltos de línea)
 t_ignore = ' \t\n'
 

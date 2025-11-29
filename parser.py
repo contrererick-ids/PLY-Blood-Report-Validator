@@ -48,7 +48,7 @@ def p_seccion(p):
     p[0] = (p[1], p[2], p[3], p[4], p[5])
 
 def p_parametros(p):
-    'K : PARAMETROS COLON LTKEY RTKEY COMMA L'
+    'K : PARAMETROS COLON LTKEY O RTKEY COMMA L'
     p[0] = (p[1], p[2], p[3], p[4])
 
 def p_firma(p):
@@ -62,6 +62,42 @@ def p_responsable(p):
 def p_cedula(p):
     'N : CEDULA COLON NUM_CEDULA'
     p[0] = (p[1], p[2], p[3])
+
+def p_lista_parametros_multiple(p):
+    'O : O COMMA PARAMETRO'
+    p[0] = p[1] + [p[3]]
+
+def p_lista_parametros_simple(p):
+    'O : PARAMETRO'
+    p[0] = [p[1]]
+
+def p_parametro_leucocitos(p):
+    'PARAMETRO : LKEY NOMBRE COLON LEUCOCITOS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('leucocitos', p[4], p[8], p[12], p[16], p[17])
+
+def p_parametro_eritrocitos(p):
+    'PARAMETRO : LKEY NOMBRE COLON ERITROCITOS COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('eritrocitos', p[4], p[8], p[12], p[16], p[17])
+
+def p_parametro_hemoglobina(p):
+    'PARAMETRO : LKEY NOMBRE COLON HEMOGLOBINA COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_GPD COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('hemoglobina', p[4], p[8], p[12], p[16], p[17])
+
+def p_parametro_hematocrito(p):
+    'PARAMETRO : LKEY NOMBRE COLON HEMATOCRITO COMMA RESULTADO COLON NUM_RESULTADO COMMA UNIDAD COLON SIMBOLO_UNIDAD_PORCENTAJE COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('hematocrito', p[4], p[8], p[12], p[16], p[17])
+
+def p_parametro_plaquetas(p):
+    'PARAMETRO : LKEY NOMBRE COLON PLAQUETAS COMMA RESULTADO COLON NUM_PLAQUETAS COMMA UNIDAD COLON SIMBOLO_UNIDAD_MCPL COMMA LIMITE COLON LIMITE_VALUES P RKEY'
+    p[0] = ('plaquetas', p[4], p[8], p[12], p[16], p[17])
+
+def p_nota_con_coma(p):
+    'P : COMMA NOTA COLON SIMBOLOS_NOTA'
+    p[0] = p[4]
+
+def p_nota_vacia(p):
+    'P : '
+    p[0] = None
 
 # 3. Definición de la función para manejar errores de sintaxis
 def p_error(p):
