@@ -1,3 +1,4 @@
+
 # PLY-Blood-Report-Validator
 
 A lexical and syntactic analyzer for medical laboratory reports, specifically designed to parse and validate Complete Blood Count (CBC) / Hematology reports in JSON format.
@@ -80,7 +81,7 @@ The main file:
 ## 🚀 Usage
 
 ### Running the Analyzer
-```bash
+```sh
 python main.py
 ```
 

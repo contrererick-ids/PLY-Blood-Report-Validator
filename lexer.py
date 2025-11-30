@@ -1,5 +1,6 @@
 #1.  Se importa el módulo lex de la biblioteca PLY, que se utiliza para definir el analizador léxico.
 import ply.lex as lex
+from errors import add_error
 
 #2.  Se define una lista de tokens que el analizador léxico reconocerá.
 tokens = ('FOLIO', 'NUM_FOLIO', 'FECHA_FORMA', 'FECHA_VALIDACION', 'PACIENTE', 'NOMBRE', 'FECHA_NAC', 'SEXO', 'EDAD',
@@ -253,8 +254,9 @@ t_ignore = ' \t\n'
 
 #5. Se define una función para manejar caracteres ilegales
 def t_error(t):
-    print(f" ERROR: Carácter '{t.value[0]}' no válido")  # Imprime el carácter ilegal
-    t.lexer.skip(1)  # Salta el carácter ilegal
+    msg = f"Carácter ilegal '{t.value[0]}' en la posición {t.lexpos}"
+    add_error("lexicos", msg)
+    t.lexer.skip(1)
 
 #6. Se construye el analizador léxico utilizando la función lex.lex().
 lexer = lex.lex() # Se crea instancia del analizador léxico
