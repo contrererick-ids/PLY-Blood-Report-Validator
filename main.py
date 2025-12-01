@@ -6,7 +6,7 @@ from semantic import validar_semantica
 from errors import errors, print_errors
 
 # Archivo a validar
-archivo = "ejemplo.json"
+archivo = "ejemplo_1.json"
 
 with open(archivo, 'r', encoding='utf-8') as json_archivo:
     data = json_archivo.read()

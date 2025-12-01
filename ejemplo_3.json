@@ -1,0 +1,23 @@
+{
+    "folio": 55443322,
+    "fecha_forma": "05/03/2024 18:25:09",
+    "fecha_validacion": "06/03/2024 07:55:41",
+    "paciente": {
+        "nombre": "Miguel Ángel Torres",
+        "fecha_nacimiento": "03/12/1975",
+        "sexo": "M",
+        "edad": 48
+    },
+    "medico_solicitante": "Dra. Verónica Núñez",
+    "seccion": "Laboratorio Clínico",
+    "parametros": [
+        {"nombre": "Plaquetas", "resultado": 265, "unidad": "10^3/μL", "limite": "[150 - 400]", "nota": "+"},
+        {"nombre": "Neutrófilos", "resultado": 3.9, "unidad": "10^3/μL", "limite": "[1.5 - 7.5]"},
+        {"nombre": "Linfocitos", "resultado": 2.7, "unidad": "10^3/μL", "limite": "[1.0 - 3.5]", "nota": "+"},
+        {"nombre": "Monocitos", "resultado": 0.9, "unidad": "10^3/μL", "limite": "[0.2 - 1.0]"}}
+     ],
+    "firma": {
+        "responsable": "Dra. Verónica Núñez",
+        "cedula": "44556677"
+    },
+}

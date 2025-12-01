@@ -1,0 +1,23 @@
+{
+    "folio": 98765432,
+    "fecha_forma": "12/11/2024 09:12:45",
+    "fecha_validacion": "12/11/2024 11:47:33",
+    "paciente": {
+        "nombre": "Laura Martínez",
+        "fecha_nacimiento": "22/08/1992",
+        "sexo": "F",
+        "edad": 32
+    },
+    "medico_solicitante": "Dr. Ricardo Salgado",
+    "seccion": "Biometría Hemática",
+    "parametros": [
+        {"nombre": "Plaquetas", "resultado": 185, "unidad": "10^3/μL", "limite": "[150 - 400]"},
+        {"nombre": "Neutrófilos", "resultado": 5.1, "unidad": "10^3/μL", "limite": "[1.5 - 7.5]", "nota": "+"},
+        {"nombre": "Linfocitos", "resultado": 1.8, "unidad": "10^3/μL", "limite": "[1.0 - 3.5]"},
+        {"nombre": "Monocitos", "resultado": 0.4, "unidad": "10^3/μL", "limite": "[0.2 - 1.0]"}
+     ],
+    "firma": {
+        "responsable": "Dr. Ricardo Salgado",
+        "cedula": "87654321"
+    }
+}
