@@ -76,9 +76,8 @@ def validar_semantica(arbol):
         if nota and nota not in SIMBOLOS_NOTA_VALIDOS:
             add_error("semanticos", f"Símbolo de nota '{nota}' inválido. Debe ser *, ** o +.")
 
-    # ---------------- FIRMA ----------------
-    firma = arbol.get("firma", {})
-    cedula = firma.get("cedula", "")
+    # ---------------- CEDULA ----------------
+    cedula = arbol.get("cedula", "")
 
     if not re.fullmatch(r"\d{8}", cedula):
         add_error("semanticos", f"La cédula profesional '{cedula}' debe tener exactamente 8 dígitos.")
